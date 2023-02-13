@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { LoadMoreBtn } from './Button.styled';
 
 function Button({ onNextFetch }) {
@@ -8,4 +9,7 @@ function Button({ onNextFetch }) {
   );
 }
 
+Button.propTypes ={
+  onNextFetch: PropTypes.func.isRequired,
+}
 export default Button;

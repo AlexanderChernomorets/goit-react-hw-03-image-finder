@@ -26,7 +26,6 @@ class App extends Component {
 
     if (prevState.imageName !== imageName) {
       this.setState(({ loading }) => ({ loading: !loading }));
-      console.log(this.state.loading);
 
       FetchApi(imageName)
         .then(({ hits, totalHits }) => {
@@ -46,7 +45,6 @@ class App extends Component {
         })
         .catch(error => this.setState({ error }))
         .finally(() => this.setState(({ loading }) => ({ loading: !loading })));
-      console.log(this.state.loading);
     }
 
     if (prevState.page !== page && page !== 1) {
