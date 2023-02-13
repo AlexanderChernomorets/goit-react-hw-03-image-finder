@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Notiflix from 'notiflix';
-import FetchApi from './Servises/FetchApi';
+import fetchApi from 'Servises/fetchApi';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Loader from './Loader/Loader';
@@ -8,14 +8,14 @@ import Button from './Button/Button';
 import Modal from './Modal/Modal';
 
 class App extends Component {
-  state = { 
+  state = {
     imageName: '',
     page: 1,
     imagesOnPage: 0,
     totalImages: 0,
     loading: false,
     showModal: false,
-    images: null,
+    images: [],
     error: null,
     currentImageUrl: null,
     currentImageDescription: null,
@@ -27,7 +27,7 @@ class App extends Component {
     if (prevState.imageName !== imageName) {
       this.setState(({ loading }) => ({ loading: !loading }));
 
-      FetchApi(imageName)
+      fetchApi(imageName)
         .then(({ hits, totalHits }) => {
           const imagesArray = hits.map(hit => ({
             id: hit.id,
@@ -52,7 +52,7 @@ class App extends Component {
 
       Notiflix.Notify.success(`We found more images.`);
 
-      FetchApi(imageName, page)
+      fetchApi(imageName, page)
         .then(({ hits }) => {
           const imagesArray = hits.map(hit => ({
             id: hit.id,
@@ -150,13 +150,9 @@ class App extends Component {
             currentImageDescription={currentImageDescription}
           />
         )}
-
-
       </div>
     );
   }
 }
 
 export default App;
-
-
