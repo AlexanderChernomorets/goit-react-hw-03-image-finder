@@ -109,7 +109,6 @@ class App extends Component {
   render() {
     const {
       images,
-      imagesOnPage,
       totalImages,
       loading,
       showModal,
@@ -139,7 +138,7 @@ class App extends Component {
 
         {loading && <Loader />}
 
-        {imagesOnPage >= 12 && imagesOnPage < totalImages && (
+        {images.length < totalImages && (
           <Button onNextFetch={onNextFetch} />
         )}
 
